@@ -1,0 +1,26 @@
+[Default]
+files = *.py, tracks/**/*.py, test/**/*.py
+ignore = tracks/__init__.py
+bears =
+    SpaceConsistencyBear,
+    FilenameBear,
+    LineLengthBear,
+    LineCountBear,
+    KeywordBear,
+    InvalidLinkBear,
+    PyImportSortBear,
+    PyUnusedCodeBear,
+    RadonBear,
+    PEP8Bear,
+    GitCommitBear,
+
+use_spaces = True
+max_line_length = 120
+max_lines_per_file = 1000
+file_naming_convention = snake
+ci_keywords = FIXME, pdb.set_trace()
+cs_keywords =
+
+[readme]
+files = README.rst
+bears = reSTLintBear, ProseLintBear
