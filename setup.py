@@ -1,5 +1,9 @@
 """Installs tracks"""
+import io
 from setuptools import setup
+
+with io.open('README.rst', encoding='utf-8') as f:
+    README = f.read()
 
 setup(
     name='tracks',
@@ -10,7 +14,8 @@ setup(
     maintainer='Bence Nagy',
     maintainer_email='bence@underyx.me',
     download_url='https://github.com/underyx/tracks/releases',
-    long_description='A library to make AB testing your backend a bit easier.',
+    description='Simple A/B testing for your backend',
+    long_description=README,
     packages=['tracks'],
     classifiers=[
         'Development Status :: 3 - Alpha',
