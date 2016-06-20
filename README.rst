@@ -40,7 +40,7 @@ Enter ``tracks``. First we define our variants:
 
 .. code-block:: python
 
-    class DelayTracks(tracks.TrackSet):
+    class DelayTracks(tracks.SimpleTrackSet):
 
         @staticmethod
         def short_track():
@@ -65,7 +65,7 @@ problems above one by one. Firstly, we can easily make the tests more complex:
 
 .. code-block:: python
 
-    class PricingTracks(tracks.TrackSet):
+    class PricingTracks(tracks.SimpleTrackSet):
 
         @staticmethod
         def expensive_track(response):
@@ -119,7 +119,7 @@ our top customers being mad at us for testing things on them? Easy peasy.
 
 .. code-block:: python
 
-    class DelayTracks(tracks.TrackSet):
+    class DelayTracks(tracks.SimpleTrackSet):
 
         @property
         def is_eligible(self):
