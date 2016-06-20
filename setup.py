@@ -7,7 +7,7 @@ with io.open('README.rst', encoding='utf-8') as f:
 
 setup(
     name='tracks',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/underyx/tracks',
     author='Bence Nagy',
     author_email='bence@underyx.me',

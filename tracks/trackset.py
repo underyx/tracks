@@ -21,6 +21,10 @@ class Track(object):
         except AttributeError:
             return False
 
+    @property
+    def masked_name(self):
+        return str(hashlib.md5(self.name.encode('utf-8')).hexdigest())[:7]
+
 
 class BaseTrackSet(object):
 
@@ -43,11 +47,15 @@ class BaseTrackSet(object):
     @property
     def _track_index(self):
         key = self.name + ':' + self.key
-        return int(hashlib.md5(key.encode()).hexdigest(), 16) % len(self._tracks)
+        return int(hashlib.md5(key.encode('utf-8')).hexdigest(), 16) % len(self._tracks)
 
     @staticmethod
     def noop(*args, **kwargs):
         return
+
+    @property
+    def masked_name(self):
+        return str(hashlib.md5(self.name.encode('utf-8')).hexdigest())[:7]
 
     @property
     def key(self):
@@ -123,7 +131,7 @@ class MultiTrackSet(object):
         if weighted_trackset_list:
             self.is_eligible = True
             key = self.name + ':' + self.key
-            index = int(hashlib.md5(key.encode()).hexdigest(), 16) % len(weighted_trackset_list)
+            index = int(hashlib.md5(key.encode('utf-8')).hexdigest(), 16) % len(weighted_trackset_list)
             self.trackset = weighted_trackset_list[index]
             self.track = self.trackset.track
             self.run_id = self.trackset.run_id

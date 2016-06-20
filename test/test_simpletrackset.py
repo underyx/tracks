@@ -7,6 +7,7 @@ except ImportError:  # Python 2
 import tracks
 from tracks.trackset import Track
 
+from hypothesis import given, strategies
 import pytest
 
 
@@ -84,3 +85,18 @@ def test_same_track_index(trackset_class, keys):
 )
 def test_different_track_index(trackset_class, keys):
     assert len({trackset_class(key=key)._track_index for key in keys}) > 1
+
+
+def test_masked_name(trackset):
+    assert trackset.masked_name == '3858f62'
+
+
+@given(strategies.text())
+def test_masked_name_deterministic(trackset_name):
+    class FooTrackSet(tracks.SimpleTrackSet):
+        name = trackset_name
+
+    class BarTrackSet(tracks.SimpleTrackSet):
+        name = trackset_name
+
+    assert FooTrackSet().masked_name == BarTrackSet().masked_name
